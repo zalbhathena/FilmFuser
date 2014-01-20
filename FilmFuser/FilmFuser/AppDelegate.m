@@ -2,11 +2,13 @@
 //  AppDelegate.m
 //  FilmFuser
 //
-//  Created by Zal Bhathena on 1/17/14.
+//  Created by Zal Bhathena on 1/19/14.
 //  Copyright (c) 2014 Zal Bhathena. All rights reserved.
 //
 
 #import "AppDelegate.h"
+
+#import "ViewController.h"
 
 @implementation AppDelegate
 
@@ -15,6 +17,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    ViewController *view_controller = [[ViewController alloc] initWithNibName:@"ViewController~iPhone4Inch" bundle:nil];
+    self.window.rootViewController = view_controller;
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

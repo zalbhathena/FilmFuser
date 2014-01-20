@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9CA5C9411889E0FD000A93C5"
+               BlueprintIdentifier = "9CAE3DA1188C408D00B719DF"
                BuildableName = "FilmFuser.app"
                BlueprintName = "FilmFuser"
                ReferencedContainer = "container:FilmFuser.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9CA5C95C1889E0FD000A93C5"
+               BlueprintIdentifier = "9CAE3DBC188C408D00B719DF"
                BuildableName = "FilmFuserTests.xctest"
                BlueprintName = "FilmFuserTests"
                ReferencedContainer = "container:FilmFuser.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9CA5C9411889E0FD000A93C5"
+            BlueprintIdentifier = "9CAE3DA1188C408D00B719DF"
             BuildableName = "FilmFuser.app"
             BlueprintName = "FilmFuser"
             ReferencedContainer = "container:FilmFuser.xcodeproj">
@@ -61,7 +61,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9CA5C9411889E0FD000A93C5"
+            BlueprintIdentifier = "9CAE3DA1188C408D00B719DF"
             BuildableName = "FilmFuser.app"
             BlueprintName = "FilmFuser"
             ReferencedContainer = "container:FilmFuser.xcodeproj">
@@ -79,7 +79,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9CA5C9411889E0FD000A93C5"
+            BlueprintIdentifier = "9CAE3DA1188C408D00B719DF"
             BuildableName = "FilmFuser.app"
             BlueprintName = "FilmFuser"
             ReferencedContainer = "container:FilmFuser.xcodeproj">
