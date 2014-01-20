@@ -35,7 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.scrollView setScrollViewContentSize:self.view.frame.size];
+    [self.scrollView setScrollViewContentSize];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -50,7 +50,7 @@
 }
 
 - (IBAction)addVideoButtonPressed:(id)sender {
-    [self.scrollView buttonAdded:nil withMinimumSize: self.view.frame.size];
+    [self.scrollView buttonAdded:nil];
 }
 
 

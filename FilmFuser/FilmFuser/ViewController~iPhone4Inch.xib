@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -16,28 +16,70 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="t6w-cQ-Y6F" customClass="VideoScrollView">
-                    <rect key="frame" x="0.0" y="50" width="320" height="468"/>
+                <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t6w-cQ-Y6F" customClass="VideoScrollView">
+                    <rect key="frame" x="0.0" y="49" width="320" height="458"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </scrollView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FilmFuzer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cIH-nl-VlQ">
-                    <rect key="frame" x="139" y="20" width="75" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FilmFuzer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIH-nl-VlQ">
+                    <rect key="frame" x="123" y="20" width="75" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button autoresizesSubviews="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1m4-ly-b38">
-                    <rect key="frame" x="137" y="518" width="62" height="50"/>
+                <button autoresizesSubviews="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1m4-ly-b38">
+                    <rect key="frame" x="107" y="515" width="107" height="53"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="BUTTON"/>
                     <connections>
                         <action selector="addVideoButtonPressed:" destination="-1" eventType="touchUpInside" id="s0G-JZ-k3P"/>
                     </connections>
                 </button>
+                <button autoresizesSubviews="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H9J-C7-97I">
+                    <rect key="frame" x="214" y="515" width="106" height="53"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <state key="normal" title="BUTTON3"/>
+                    <connections>
+                        <action selector="addVideoButtonPressed:" destination="-1" eventType="touchUpInside" id="Ypd-qL-FT0"/>
+                    </connections>
+                </button>
+                <button autoresizesSubviews="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iub-BA-UIe">
+                    <rect key="frame" x="0.0" y="515" width="107" height="53"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <state key="normal" title="BUTTON1"/>
+                    <connections>
+                        <action selector="addVideoButtonPressed:" destination="-1" eventType="touchUpInside" id="nFm-QK-S56"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="t6w-cQ-Y6F" secondAttribute="trailing" id="1bR-He-H25"/>
+                <constraint firstAttribute="bottom" secondItem="1m4-ly-b38" secondAttribute="bottom" id="A2J-NW-bFP"/>
+                <constraint firstItem="t6w-cQ-Y6F" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Dyo-QE-PV5"/>
+                <constraint firstAttribute="bottom" secondItem="iub-BA-UIe" secondAttribute="bottom" id="EtK-1K-vLI"/>
+                <constraint firstAttribute="bottom" secondItem="t6w-cQ-Y6F" secondAttribute="bottom" constant="61" id="Nja-b0-Pif"/>
+                <constraint firstItem="iub-BA-UIe" firstAttribute="top" secondItem="t6w-cQ-Y6F" secondAttribute="bottom" constant="8" id="TlH-CS-oPH"/>
+                <constraint firstItem="t6w-cQ-Y6F" firstAttribute="top" secondItem="1" secondAttribute="top" constant="49" id="Wma-0E-lbw"/>
+                <constraint firstItem="1m4-ly-b38" firstAttribute="leading" secondItem="iub-BA-UIe" secondAttribute="trailing" id="aKS-IW-uRq"/>
+                <constraint firstItem="H9J-C7-97I" firstAttribute="top" secondItem="t6w-cQ-Y6F" secondAttribute="bottom" constant="8" id="aaA-oS-AM0"/>
+                <constraint firstAttribute="centerX" secondItem="1m4-ly-b38" secondAttribute="centerX" id="afc-xs-M3l"/>
+                <constraint firstAttribute="centerX" secondItem="t6w-cQ-Y6F" secondAttribute="centerX" id="agE-Bp-muS"/>
+                <constraint firstItem="iub-BA-UIe" firstAttribute="width" secondItem="1m4-ly-b38" secondAttribute="width" id="bAe-gM-8f5"/>
+                <constraint firstItem="t6w-cQ-Y6F" firstAttribute="top" secondItem="cIH-nl-VlQ" secondAttribute="bottom" constant="8" id="bae-oL-gno"/>
+                <constraint firstAttribute="bottom" secondItem="H9J-C7-97I" secondAttribute="bottom" id="dGJ-0I-Ep2"/>
+                <constraint firstItem="iub-BA-UIe" firstAttribute="width" secondItem="H9J-C7-97I" secondAttribute="width" id="iZo-xj-vXD"/>
+                <constraint firstAttribute="centerX" secondItem="1m4-ly-b38" secondAttribute="centerX" id="igS-eV-Dst"/>
+                <constraint firstItem="cIH-nl-VlQ" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" id="kjO-FO-Mab"/>
+                <constraint firstAttribute="bottom" secondItem="1m4-ly-b38" secondAttribute="bottom" id="nB8-y4-5wy"/>
+                <constraint firstAttribute="trailing" secondItem="H9J-C7-97I" secondAttribute="trailing" id="r6q-g2-MfZ"/>
+                <constraint firstAttribute="centerX" secondItem="cIH-nl-VlQ" secondAttribute="centerX" id="rXu-zi-fCS"/>
+                <constraint firstItem="1m4-ly-b38" firstAttribute="top" secondItem="t6w-cQ-Y6F" secondAttribute="bottom" constant="8" id="uVP-Hg-ioD"/>
+                <constraint firstItem="iub-BA-UIe" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="x4j-v5-JcK"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

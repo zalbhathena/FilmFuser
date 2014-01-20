@@ -13,8 +13,8 @@
 
 
 
-@property (strong, nonatomic) IBOutlet UIButton *addVideoButton;
+@property (retain, nonatomic) IBOutlet UIButton *addVideoButton;
 
-@property (strong, nonatomic) IBOutlet VideoScrollView *scrollView;
+@property (retain, nonatomic) IBOutlet VideoScrollView *scrollView;
 
 @end

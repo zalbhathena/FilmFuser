@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VideoButtonView.h"
 
-@interface VideoScrollView : UIScrollView
+@interface VideoScrollView: UIScrollView <VideoButtonViewDelegate>
 
-@property (strong, nonatomic)          NSMutableArray *buttonArray;
+@property (retain, nonatomic)          NSMutableArray *buttonArray;
 
-- (void)setScrollViewContentSize: (CGSize) minimumSize;
-- (void)buttonAdded: (UIImage*)image withMinimumSize: (CGSize) minimumSize;
+- (void)setScrollViewContentSize;
+- (void)buttonAdded: (UIImage*)image;
+- (void)respondToDelete:(id)sender;
 
 @end
