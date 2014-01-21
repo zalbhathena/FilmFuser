@@ -12,37 +12,122 @@
 
 @implementation VideoButtonView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame withImage: (UIImage*) image
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.videoButton = [[UIButton alloc] init];
-        [self.videoButton setBackgroundColor:[UIColor blueColor]];
-        
-        self.deleteButton = [[UIButton alloc] init];
-        
-        [self setFrame:frame];
-        
-        [self.deleteButton addTarget:self action:@selector(deletePressed:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.deleteButton setBackgroundImage:[[UIImage imageNamed:@"delete_button.png"]
-                                              stretchableImageWithLeftCapWidth:8.0f
-                                              topCapHeight:0.0f]
-                                            forState:UIControlStateNormal];
-        
-        [self.deleteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
-        self.deleteButton.titleLabel.font = [UIFont boldSystemFontOfSize:6];
-        self.deleteButton.titleLabel.shadowColor = [UIColor lightGrayColor];
-        self.deleteButton.titleLabel.shadowOffset = CGSizeMake(0, -1);
+        _videoButton = [[UIButton alloc] init];
+        [self.videoButton setBackgroundImage:image
+                                     forState:UIControlStateNormal];
         
         [self addSubview:self.videoButton];
-        [self addSubview:self.deleteButton];
         
-        [self bringSubviewToFront:self.deleteButton];
+        UISwipeGestureRecognizer* swipeUpGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUpFrom:)];
+        UISwipeGestureRecognizer* swipeDownGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDownFrom:)];
+        UISwipeGestureRecognizer* swipeLeftGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeLeftFrom:)];
+        UISwipeGestureRecognizer* swipeRightGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeRightFrom:)];
+        
+        swipeUpGestureRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
+        swipeDownGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
+        swipeLeftGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+        swipeRightGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+        
+        [self addGestureRecognizer:swipeUpGestureRecognizer];
+        [self addGestureRecognizer:swipeDownGestureRecognizer];
+        [self addGestureRecognizer:swipeLeftGestureRecognizer];
+        [self addGestureRecognizer:swipeRightGestureRecognizer];
         
     }
     return self;
+}
+
+- (void)handleSwipeUpFrom:(UIGestureRecognizer*)recognizer {
+    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+    {
+        if([self.delegate respondsToSelector:@selector(respondToSwap:withRelativeSwapIndex:)])
+        {
+            [self.delegate respondToSwap:self withRelativeSwapIndex:-1];
+        }
+    }
+    else {
+        CGRect frame = self.frame;
+        frame = CGRectMake(frame.origin.x, -1*frame.size.height - 10, frame.size.height, frame.size.width);
+        [UIView animateWithDuration:0.5
+                              delay:0.0
+                            options: UIViewAnimationCurveEaseOut
+                         animations:^{
+                             self.frame = frame;
+                         }
+                         completion:^(BOOL finished){
+                            [self deletePressed:nil];
+                         }];
+    }
+}
+- (void)handleSwipeDownFrom:(UIGestureRecognizer*)recognizer {
+    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+    {
+        if([self.delegate respondsToSelector:@selector(respondToSwap:withRelativeSwapIndex:)])
+        {
+            [self.delegate respondToSwap:self withRelativeSwapIndex:1];
+        }
+    }
+    else {
+        CGRect frame = self.frame;
+        frame = CGRectMake(frame.origin.x, self.superview.frame.size.height, frame.size.height, frame.size.width);
+        [UIView animateWithDuration:0.5
+                              delay:0.0
+                            options: UIViewAnimationCurveEaseOut
+                         animations:^{
+                             self.frame = frame;
+                         }
+                         completion:^(BOOL finished){
+                             [self deletePressed:nil];
+                         }];
+    }
+}
+- (void)handleSwipeLeftFrom:(UIGestureRecognizer*)recognizer {
+    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+    {
+        CGRect frame = self.frame;
+        frame = CGRectMake(-1*frame.size.width - 10, frame.origin.y, frame.size.height, frame.size.width);
+        [UIView animateWithDuration:0.5
+                              delay:0.0
+                            options: UIViewAnimationCurveEaseOut
+                         animations:^{
+                             self.frame = frame;
+                         }
+                         completion:^(BOOL finished){
+                             [self deletePressed:nil];
+                         }];
+    }
+    else {
+        if([self.delegate respondsToSelector:@selector(respondToSwap:withRelativeSwapIndex:)])
+        {
+            [self.delegate respondToSwap:self withRelativeSwapIndex:-1];
+        }
+    }
+}
+- (void)handleSwipeRightFrom:(UIGestureRecognizer*)recognizer {
+    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation))
+    {
+        CGRect frame = self.frame;
+        frame = CGRectMake(self.superview.frame.size.width, frame.origin.y, frame.size.height, frame.size.width);
+        [UIView animateWithDuration:0.5
+                              delay:0.0
+                            options: UIViewAnimationCurveEaseOut
+                         animations:^{
+                             self.frame = frame;
+                         }
+                         completion:^(BOOL finished){
+                             [self deletePressed:nil];
+                         }];
+    }
+    else {
+        if([self.delegate respondsToSelector:@selector(respondToSwap:withRelativeSwapIndex:)])
+        {
+            [self.delegate respondToSwap:self withRelativeSwapIndex:1];
+        }
+    }
 }
 
 -(void)deletePressed: (id)sender {
@@ -62,10 +147,6 @@
     CGRect video_frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
     [self.videoButton setFrame:video_frame];
     [self.videoButton setBackgroundColor:[UIColor blueColor]];
-    
-    CGFloat delete_y = frame.size.height - 15;
-    CGRect deleteFrame = CGRectMake(10, delete_y, 40, 10);
-    [self.deleteButton setFrame:deleteFrame];
 }
 
 

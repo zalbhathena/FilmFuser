@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "VideoScrollView.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <AVFoundation/AVFoundation.h>
+#import <CoreGraphics/CoreGraphics.h>
 
 @interface ViewController : UIViewController<UIScrollViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
-
-
 
 @property (retain, nonatomic) IBOutlet UIButton *addVideoButton;
 
 @property (retain, nonatomic) IBOutlet VideoScrollView *scrollView;
+
+@property BOOL shouldRotate;
 
 @end

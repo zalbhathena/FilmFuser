@@ -26,6 +26,7 @@
 		9CAE3DCB188C408D00B719DF /* FilmFuserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAE3DCA188C408D00B719DF /* FilmFuserTests.m */; };
 		9CAE3DD9188C410E00B719DF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAE3DD7188C410E00B719DF /* ViewController.m */; };
 		9CAE3DDA188C410E00B719DF /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CAE3DD8188C410E00B719DF /* ViewController.xib */; };
+		9CF4E4E1188E2E3200316DF9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF4E4E0188E2E3200316DF9 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		9CAE3DD6188C410E00B719DF /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		9CAE3DD7188C410E00B719DF /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		9CAE3DD8188C410E00B719DF /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		9CF4E4E0188E2E3200316DF9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,8 +74,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CA34363188DF7090079C7A1 /* MobileCoreServices.framework in Frameworks */,
 				9CAE3DA8188C408D00B719DF /* CoreGraphics.framework in Frameworks */,
+				9CF4E4E1188E2E3200316DF9 /* AVFoundation.framework in Frameworks */,
+				9CA34363188DF7090079C7A1 /* MobileCoreServices.framework in Frameworks */,
 				9CAE3DAA188C408D00B719DF /* UIKit.framework in Frameworks */,
 				9CAE3DA6188C408D00B719DF /* Foundation.framework in Frameworks */,
 			);
@@ -123,6 +126,7 @@
 		9CAE3DA4188C408D00B719DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9CF4E4E0188E2E3200316DF9 /* AVFoundation.framework */,
 				9CA34362188DF7090079C7A1 /* MobileCoreServices.framework */,
 				9CAE3DA5188C408D00B719DF /* Foundation.framework */,
 				9CAE3DA7188C408D00B719DF /* CoreGraphics.framework */,
@@ -227,6 +231,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Zal Bhathena";
 				TargetAttributes = {
+					9CAE3DA1188C408D00B719DF = {
+						DevelopmentTeam = 7VDPHN5N3R;
+					};
 					9CAE3DBC188C408D00B719DF = {
 						TestTargetID = 9CAE3DA1188C408D00B719DF;
 					};
@@ -403,10 +410,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FilmFuser/FilmFuser-Prefix.pch";
 				INFOPLIST_FILE = "FilmFuser/FilmFuser-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -416,10 +427,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FilmFuser/FilmFuser-Prefix.pch";
 				INFOPLIST_FILE = "FilmFuser/FilmFuser-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

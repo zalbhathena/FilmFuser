@@ -26,7 +26,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
+        self.shouldRotate = YES;
         [self.view bringSubviewToFront: self.addVideoButton];
     }
     return self;
@@ -50,7 +50,6 @@
 }
 
 - (IBAction)addVideoButtonPressed:(id)sender {
-    [self.scrollView buttonAdded:nil];
     [self video];
 }
 
@@ -69,6 +68,7 @@
 }
 
 - (void)video {
+    self.shouldRotate = NO;
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
     imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -80,19 +80,36 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
-    
+    NSString* moviePath = nil;
     if (CFStringCompare ((__bridge CFStringRef) mediaType, kUTTypeMovie, 0) == kCFCompareEqualTo) {
-        NSString *moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
+        moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
         // NSLog(@"%@",moviePath);
         //NSURL *videoUrl=(NSURL*)[info objectForKey:UIImagePickerControllerMediaURL];
         
-        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (moviePath)) {
+        /*if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (moviePath)) {
             UISaveVideoAtPathToSavedPhotosAlbum (moviePath, nil, nil, nil);
-        }
+        }*/
     }
+    
+    NSURL* sourceMovieURL = [NSURL fileURLWithPath:moviePath];
+    AVURLAsset* sourceAsset = [AVURLAsset URLAssetWithURL:sourceMovieURL options:nil];
+    AVAssetImageGenerator* imageGenerator = [[AVAssetImageGenerator alloc] initWithAsset:sourceAsset];
+    imageGenerator.appliesPreferredTrackTransform = YES;
+    CMTime time = CMTimeMake(0, 1);
+    UIImage* image = [UIImage imageWithCGImage:[imageGenerator copyCGImageAtTime: time actualTime:NULL error:NULL]];
+    [self.scrollView buttonAdded:image];
     
     [self dismissViewControllerAnimated:YES completion:nil];
     //[picker release];
-} 
+}
+
+- (void) dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion {
+    [super dismissViewControllerAnimated:flag completion:completion];
+    self.shouldRotate = YES;
+}
+
+- (BOOL)shouldAutorotate {
+    return self.shouldRotate;
+}
 
 @end

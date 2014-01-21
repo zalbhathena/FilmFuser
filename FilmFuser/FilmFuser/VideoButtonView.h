@@ -8,17 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+
 @protocol VideoButtonViewDelegate <NSObject>
 
 - (void)respondToDelete: (id)sender;
+
+- (void)respondToSwap: (id)sender withRelativeSwapIndex:(int)relativeIndex;
 
 @end
 
 @interface VideoButtonView : UIView
 
+- (id)initWithFrame:(CGRect)frame withImage: (UIImage*) image;
 
 @property (retain, nonatomic) UIButton *videoButton;
-@property (retain, nonatomic) UIButton *deleteButton;
 
 @property(nonatomic,assign)id<VideoButtonViewDelegate> delegate;
 

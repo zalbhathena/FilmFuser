@@ -17,4 +17,6 @@
 - (void)buttonAdded: (UIImage*)image;
 - (void)respondToDelete:(id)sender;
 
+- (void)respondToSwap: (id)sender withRelativeSwapIndex:(int)relativeIndex;
+
 @end
