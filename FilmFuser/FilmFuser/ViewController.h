@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "VideoScrollView.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
-@interface ViewController : UIViewController<UIScrollViewDelegate>
+@interface ViewController : UIViewController<UIScrollViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 
 

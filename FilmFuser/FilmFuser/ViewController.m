@@ -51,6 +51,7 @@
 
 - (IBAction)addVideoButtonPressed:(id)sender {
     [self.scrollView buttonAdded:nil];
+    [self video];
 }
 
 
@@ -61,5 +62,37 @@
     
     return NO;
 }
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [scrollView setScrollViewContentSize];
+    
+}
+
+- (void)video {
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.delegate = self;
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePicker.mediaTypes = [[NSArray alloc] initWithObjects:(NSString *)kUTTypeMovie,      nil];
+    
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+    
+    if (CFStringCompare ((__bridge CFStringRef) mediaType, kUTTypeMovie, 0) == kCFCompareEqualTo) {
+        NSString *moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
+        // NSLog(@"%@",moviePath);
+        //NSURL *videoUrl=(NSURL*)[info objectForKey:UIImagePickerControllerMediaURL];
+        
+        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (moviePath)) {
+            UISaveVideoAtPathToSavedPhotosAlbum (moviePath, nil, nil, nil);
+        }
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    //[picker release];
+} 
 
 @end

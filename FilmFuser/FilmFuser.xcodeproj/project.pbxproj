@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9CA34363188DF7090079C7A1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA34362188DF7090079C7A1 /* MobileCoreServices.framework */; };
 		9CA4A6A3188CE1B30006D70C /* VideoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4A6A2188CE1B30006D70C /* VideoScrollView.m */; };
 		9CA606D7188D743000BE0F34 /* VideoButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA606D6188D743000BE0F34 /* VideoButtonView.m */; };
 		9CA606DA188D825200BE0F34 /* delete_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA606D9188D825200BE0F34 /* delete_button.png */; };
@@ -24,7 +25,7 @@
 		9CAE3DC9188C408D00B719DF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9CAE3DC7188C408D00B719DF /* InfoPlist.strings */; };
 		9CAE3DCB188C408D00B719DF /* FilmFuserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAE3DCA188C408D00B719DF /* FilmFuserTests.m */; };
 		9CAE3DD9188C410E00B719DF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAE3DD7188C410E00B719DF /* ViewController.m */; };
-		9CAE3DDA188C410E00B719DF /* ViewController~iPhone4Inch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CAE3DD8188C410E00B719DF /* ViewController~iPhone4Inch.xib */; };
+		9CAE3DDA188C410E00B719DF /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CAE3DD8188C410E00B719DF /* ViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9CA34362188DF7090079C7A1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		9CA4A6A1188CE1B30006D70C /* VideoScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoScrollView.h; sourceTree = "<group>"; };
 		9CA4A6A2188CE1B30006D70C /* VideoScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoScrollView.m; sourceTree = "<group>"; };
 		9CA606D5188D743000BE0F34 /* VideoButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoButtonView.h; sourceTree = "<group>"; };
@@ -62,7 +64,7 @@
 		9CAE3DCA188C408D00B719DF /* FilmFuserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilmFuserTests.m; sourceTree = "<group>"; };
 		9CAE3DD6188C410E00B719DF /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		9CAE3DD7188C410E00B719DF /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		9CAE3DD8188C410E00B719DF /* ViewController~iPhone4Inch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ViewController~iPhone4Inch.xib"; sourceTree = "<group>"; };
+		9CAE3DD8188C410E00B719DF /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CA34363188DF7090079C7A1 /* MobileCoreServices.framework in Frameworks */,
 				9CAE3DA8188C408D00B719DF /* CoreGraphics.framework in Frameworks */,
 				9CAE3DAA188C408D00B719DF /* UIKit.framework in Frameworks */,
 				9CAE3DA6188C408D00B719DF /* Foundation.framework in Frameworks */,
@@ -120,6 +123,7 @@
 		9CAE3DA4188C408D00B719DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9CA34362188DF7090079C7A1 /* MobileCoreServices.framework */,
 				9CAE3DA5188C408D00B719DF /* Foundation.framework */,
 				9CAE3DA7188C408D00B719DF /* CoreGraphics.framework */,
 				9CAE3DA9188C408D00B719DF /* UIKit.framework */,
@@ -138,7 +142,7 @@
 				9CAE3DAC188C408D00B719DF /* Supporting Files */,
 				9CAE3DD6188C410E00B719DF /* ViewController.h */,
 				9CAE3DD7188C410E00B719DF /* ViewController.m */,
-				9CAE3DD8188C410E00B719DF /* ViewController~iPhone4Inch.xib */,
+				9CAE3DD8188C410E00B719DF /* ViewController.xib */,
 				9CA4A6A1188CE1B30006D70C /* VideoScrollView.h */,
 				9CA4A6A2188CE1B30006D70C /* VideoScrollView.m */,
 				9CA606D5188D743000BE0F34 /* VideoButtonView.h */,
@@ -252,7 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CAE3DB0188C408D00B719DF /* InfoPlist.strings in Resources */,
-				9CAE3DDA188C410E00B719DF /* ViewController~iPhone4Inch.xib in Resources */,
+				9CAE3DDA188C410E00B719DF /* ViewController.xib in Resources */,
 				9CA606DC188D870E00BE0F34 /* delete_button.jpg in Resources */,
 				9CA606DA188D825200BE0F34 /* delete_button.png in Resources */,
 				9CAE3DB8188C408D00B719DF /* Images.xcassets in Resources */,

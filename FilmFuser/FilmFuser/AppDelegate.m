@@ -18,7 +18,7 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    ViewController *view_controller = [[ViewController alloc] initWithNibName:@"ViewController~iPhone4Inch" bundle:nil];
+    ViewController *view_controller = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     self.window.rootViewController = view_controller;
     
     [self.window makeKeyAndVisible];
