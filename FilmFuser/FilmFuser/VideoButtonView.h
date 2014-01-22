@@ -19,7 +19,7 @@
 
 @interface VideoButtonView : UIView
 
--(void)addVideoAsset:(AVAsset*)new_asset;
+-(void)addVideoAsset:(AVURLAsset*)new_asset;
 
 @property (retain, nonatomic) UIActivityIndicatorView* activityView;
  
@@ -27,7 +27,7 @@
 
 @property(nonatomic,assign)id<VideoButtonViewDelegate> delegate;
 
-@property (nonatomic, retain) AVAsset* videoAsset;
+@property (nonatomic, retain) AVURLAsset* videoAsset;
 
 @property (nonatomic, retain) UIImageView* imageView;
 

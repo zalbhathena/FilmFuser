@@ -24,4 +24,8 @@
 
 @property (retain, nonatomic) __block UIAlertView* alert;
 
+@property BOOL isMerging;
+
+@property int fileEndingNumber;
+
 @end

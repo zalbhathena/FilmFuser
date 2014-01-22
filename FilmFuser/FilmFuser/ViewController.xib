@@ -35,7 +35,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.052597551778417011" green="0.0" blue="0.29557999320652173" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="Marion-Regular" family="Marion" pointSize="18"/>
-                    <state key="normal" title="Add Video">
+                    <state key="normal" title="Add Film">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>

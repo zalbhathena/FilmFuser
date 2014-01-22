@@ -160,15 +160,23 @@
     self.activityView.frame = activity_frame;
 }
 
--(void)addVideoAsset:(AVAsset*)new_asset {
+-(void)addVideoAsset:(AVURLAsset*)new_asset {
     self.videoAsset = new_asset;
     AVAssetImageGenerator* imageGenerator = [[AVAssetImageGenerator alloc] initWithAsset:new_asset];
     imageGenerator.appliesPreferredTrackTransform = YES;
     CMTime time = CMTimeMake(0, 1);
     UIImage* image = [UIImage imageWithCGImage:[imageGenerator copyCGImageAtTime: time actualTime:NULL error:NULL]];
-    self.imageView.image = image;
-    //[self.activityView removeFromSuperview];
-    //self.activityView = nil;
+    
+    float min_length = MIN(image.size.width, image.size.height);
+    float x = (image.size.width - min_length)/2;
+    float y = (image.size.height - min_length)/2;
+    CGRect cropRect = CGRectMake(x, y, min_length, min_length);
+    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], cropRect);
+    
+    UIImage *cropped = [UIImage imageWithCGImage:imageRef];
+    
+    self.imageView.image = cropped;
+    
 }
 
 /*
