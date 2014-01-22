@@ -117,12 +117,21 @@
     instruction.timeRange = CMTimeRangeMake(kCMTimeZero, CMTimeMakeWithSeconds(60, 30) );
     
     // rotate to portrait
+    
+    
     AVMutableVideoCompositionLayerInstruction* transformer = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:clipVideoTrack];
+    
+    
+    
     CGAffineTransform t1 = CGAffineTransformMakeTranslation(clipVideoTrack.naturalSize.height, -(clipVideoTrack.naturalSize.width - clipVideoTrack.naturalSize.height) /2 );
+    
     CGAffineTransform t2 = CGAffineTransformRotate(t1, M_PI_2);
+
+    
     
     CGAffineTransform finalTransform = t2;
-    [transformer setTransform:finalTransform atTime:kCMTimeZero];
+    if([self orientationForTrack:clipVideoTrack] == UIInterfaceOrientationPortrait)
+        [transformer setTransform:finalTransform atTime:kCMTimeZero];
     instruction.layerInstructions = [NSArray arrayWithObject:transformer];
     videoComposition.instructions = [NSArray arrayWithObject: instruction];
     
@@ -175,6 +184,22 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
     //[picker release];
+}
+
+- (UIInterfaceOrientation)orientationForTrack:(AVAssetTrack *)videoTrack
+{
+ 
+    CGSize size = [videoTrack naturalSize];
+    CGAffineTransform txf = [videoTrack preferredTransform];
+    
+    if (size.width == txf.tx && size.height == txf.ty)
+        return UIInterfaceOrientationLandscapeRight;
+    else if (txf.tx == 0 && txf.ty == 0)
+        return UIInterfaceOrientationLandscapeLeft;
+    else if (txf.tx == 0 && txf.ty == size.width)
+        return UIInterfaceOrientationPortraitUpsideDown;
+    else
+        return UIInterfaceOrientationPortrait;
 }
 
 - (void)merge {
@@ -237,6 +262,11 @@
         AVAssetTrack *sourceAudioTrack;
         
         CMTime current_time = [composition duration];
+        
+        if(time == 0)
+        {
+            [compositionVideoTrack setPreferredTransform:sourceAsset.preferredTransform];
+        }
         
         if(videoTrack) {
             

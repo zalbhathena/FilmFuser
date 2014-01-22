@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilmFuser/VideoButtonView.m"
-            timestampString = "412072242.525134"
+            timestampString = "412108253.506018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "-deletePressed:"
             landmarkType = "5">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilmFuser/VideoButtonView.m"
-            timestampString = "412072242.525134"
+            timestampString = "412108253.506018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "-deletePressed:"
             landmarkType = "5">
          </BreakpointContent>
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilmFuser/VideoButtonView.m"
-            timestampString = "412072242.525134"
+            timestampString = "412108253.506018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "-handleSwipeLeftFrom:"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilmFuser/VideoButtonView.m"
-            timestampString = "412072242.525134"
+            timestampString = "412108253.506018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "-handleSwipeRightFrom:"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilmFuser/VideoButtonView.m"
-            timestampString = "412072242.525134"
+            timestampString = "412108253.506018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "-handleSwipeRightFrom:"
             landmarkType = "5">
          </BreakpointContent>
@@ -298,7 +298,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilmFuser/VideoButtonView.m"
-            timestampString = "412072242.525134"
+            timestampString = "412108253.506018"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "-handleSwipeLeftFrom:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FilmFuser/VideoButtonView.m"
+            timestampString = "412108253.506018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "97"
@@ -313,30 +329,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FilmFuser/VideoButtonView.m"
-            timestampString = "412072242.525134"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "-handleSwipeLeftFrom:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "FilmFuser/ViewController.m"
-            timestampString = "412073578.848246"
+            timestampString = "412118876.208365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "346"
-            endingLineNumber = "346"
-            landmarkName = "-dismissViewControllerAnimated:completion:"
-            landmarkType = "5">
+            startingLineNumber = "480"
+            endingLineNumber = "480">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -346,11 +344,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilmFuser/VideoButtonView.m"
-            timestampString = "412072242.525134"
+            timestampString = "412108253.506018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "-handleSwipeDownFrom:"
             landmarkType = "5">
          </BreakpointContent>
@@ -378,12 +376,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilmFuser/ViewController.m"
-            timestampString = "412073578.848246"
+            timestampString = "412118876.208365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
-            landmarkName = "-merge"
+            startingLineNumber = "385"
+            endingLineNumber = "385"
+            landmarkName = "-alertView:didDismissWithButtonIndex:"
             landmarkType = "5">
             <Locations>
                <Location
@@ -438,12 +436,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilmFuser/ViewController.m"
-            timestampString = "412073578.848246"
+            timestampString = "412118876.208365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "281"
-            endingLineNumber = "281"
-            landmarkName = "-merge"
+            startingLineNumber = "380"
+            endingLineNumber = "380"
+            landmarkName = "-shouldAutorotate"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -454,12 +452,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilmFuser/ViewController.m"
-            timestampString = "412073578.848246"
+            timestampString = "412118876.208365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
-            landmarkName = "-merge"
+            startingLineNumber = "366"
+            endingLineNumber = "366"
+            landmarkName = "-applicationDocumentsDirectory"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -470,13 +468,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilmFuser/ViewController.m"
-            timestampString = "412073578.848246"
+            timestampString = "412118876.208365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
-            landmarkName = "-merge"
-            landmarkType = "5">
+            startingLineNumber = "413"
+            endingLineNumber = "413">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -486,13 +482,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilmFuser/ViewController.m"
-            timestampString = "412073578.848246"
+            timestampString = "412118876.208365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
-            landmarkName = "-merge"
-            landmarkType = "5">
+            startingLineNumber = "431"
+            endingLineNumber = "431">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -532,13 +526,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilmFuser/VideoButtonView.m"
-            timestampString = "412075482.931471"
+            timestampString = "412108253.506018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "-setFrame:"
-            landmarkType = "5">
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "@implementation VideoButtonView"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -548,13 +542,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilmFuser/VideoButtonView.m"
-            timestampString = "412075482.931471"
+            timestampString = "412108253.506018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
-            landmarkName = "-addVideoAsset:"
-            landmarkType = "5">
+            startingLineNumber = "187"
+            endingLineNumber = "187">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -564,11 +556,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilmFuser/ViewController.m"
-            timestampString = "412071732.614768"
+            timestampString = "412118876.208365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -580,11 +572,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilmFuser/VideoButtonView.m"
-            timestampString = "412075482.931471"
+            timestampString = "412108253.506018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "-addVideoAsset:"
             landmarkType = "5">
          </BreakpointContent>
@@ -596,12 +588,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilmFuser/ViewController.m"
-            timestampString = "412073578.848246"
+            timestampString = "412118876.208365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "283"
-            endingLineNumber = "283"
-            landmarkName = "-merge"
+            startingLineNumber = "382"
+            endingLineNumber = "382"
+            landmarkName = "-shouldAutorotate"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -612,13 +604,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FilmFuser/ViewController.m"
-            timestampString = "412072792.210488"
+            timestampString = "412118876.208365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
-            landmarkName = "-merge"
-            landmarkType = "5">
+            startingLineNumber = "420"
+            endingLineNumber = "420">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -627,14 +617,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FilmFuser/ViewController.m"
-            timestampString = "412073578.848246"
+            filePath = "FilmFuser/VideoButtonView.m"
+            timestampString = "412108253.506018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
-            landmarkName = "-merge"
-            landmarkType = "5">
+            startingLineNumber = "184"
+            endingLineNumber = "184">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
