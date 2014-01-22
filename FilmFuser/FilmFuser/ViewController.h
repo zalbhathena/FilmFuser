@@ -22,4 +22,6 @@
 
 @property BOOL shouldRotate;
 
+@property (retain, nonatomic) __block UIAlertView* alert;
+
 @end

@@ -204,28 +204,38 @@
 
 - (void)merge {
     if([self.scrollView.buttonArray count] == 0) {
-        __block UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!"
+        if (self.alert) {
+            [self.alert dismissWithClickedButtonIndex:0 animated:YES];
+            self.alert = nil;
+        }
+        self.alert = [[UIAlertView alloc] initWithTitle:@"Oops!"
                                                         message:@"No films available to fuze!"
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
+            
         dispatch_async(dispatch_get_main_queue(), ^(void){
             
-            [alert show];
+            [self.alert show];
             
         });
     }
     else {
-        __block UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Merging"
+        if (self.alert) {
+            [self.alert dismissWithClickedButtonIndex:0 animated:YES];
+            self.alert = nil;
+        }
+        self.alert = [[UIAlertView alloc] initWithTitle:@"Merging"
                                                     message:@"Films are currently fuzing!"
                                                    delegate:self
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
         dispatch_async(dispatch_get_main_queue(), ^(void){
             
-            [alert show];
+            [self.alert show];
             
         });
+
     }
     AVMutableComposition *composition = [AVMutableComposition composition];
     
@@ -348,14 +358,18 @@
                 NSError *removeError = nil;
                 [[NSFileManager defaultManager] removeItemAtURL:url error:&removeError];
             }];
-            __block UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Done!"
+            if (self.alert) {
+                [self.alert dismissWithClickedButtonIndex:0 animated:YES];
+                self.alert = nil;
+            }
+            self.alert = [[UIAlertView alloc] initWithTitle:@"Done!"
                                                             message:@"Films have been fuzed!"
                                                            delegate:self
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 
-                [alert show];
+                [self.alert show];
                 
             });
         }
