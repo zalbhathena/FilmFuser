@@ -62,7 +62,7 @@
         frame = CGRectMake(frame.origin.x, -1*frame.size.height - 10, frame.size.height, frame.size.width);
         [UIView animateWithDuration:0.5
                               delay:0.0
-                            options: UIViewAnimationOptionCurveEaseOut
+                            options: UIViewAnimationCurveEaseOut
                          animations:^{
                              self.frame = frame;
                          }
@@ -84,7 +84,7 @@
         frame = CGRectMake(frame.origin.x, self.superview.frame.size.height, frame.size.height, frame.size.width);
         [UIView animateWithDuration:0.5
                               delay:0.0
-                            options: UIViewAnimationOptionCurveEaseOut
+                            options: UIViewAnimationCurveEaseOut
                          animations:^{
                              self.frame = frame;
                          }
@@ -100,7 +100,7 @@
         frame = CGRectMake(-1*frame.size.width - 10, frame.origin.y, frame.size.height, frame.size.width);
         [UIView animateWithDuration:0.5
                               delay:0.0
-                            options: UIViewAnimationOptionCurveEaseOut
+                            options: UIViewAnimationCurveEaseOut
                          animations:^{
                              self.frame = frame;
                          }
@@ -122,7 +122,7 @@
         frame = CGRectMake(self.superview.frame.size.width, frame.origin.y, frame.size.height, frame.size.width);
         [UIView animateWithDuration:0.5
                               delay:0.0
-                            options: UIViewAnimationOptionCurveEaseOut
+                            options: UIViewAnimationCurveEaseOut
                          animations:^{
                              self.frame = frame;
                          }
@@ -150,21 +150,14 @@
 
 -(void) setFrame:(CGRect)frame
 {
-    [UIView animateWithDuration:0.4
-                          delay:0.0
-                        options: UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         [super setFrame:frame];
-                         
-                         CGRect video_frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-                         [self.videoButton setFrame:video_frame];
-                         [self.imageView setFrame:video_frame];
-                         
-                         CGRect activity_frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-                         self.activityView.frame = activity_frame;
-                     }
-                     completion:^(BOOL finished){
-                     }];
+    [super setFrame:frame];
+    
+    CGRect video_frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    [self.videoButton setFrame:video_frame];
+    [self.imageView setFrame:video_frame];
+    
+    CGRect activity_frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    self.activityView.frame = activity_frame;
 }
 
 -(void)addVideoAsset:(AVAsset*)new_asset {

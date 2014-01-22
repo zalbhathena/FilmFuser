@@ -121,7 +121,7 @@
 {
     [UIView animateWithDuration:0.5
                           delay:0.0
-                        options: UIViewAnimationOptionCurveEaseOut
+                        options: UIViewAnimationCurveEaseOut
                      animations:^{
                          [self.buttonArray removeObject:sender];
                          [self setButtonLocations];
@@ -146,7 +146,7 @@
     
     [UIView animateWithDuration:0.5
                           delay:0.0
-                        options: UIViewAnimationOptionCurveEaseOut
+                        options: UIViewAnimationCurveEaseOut
                      animations:^{
                          other_object.frame = ((VideoButtonView*)sender).frame;
                          ((VideoButtonView*)sender).frame = temp_frame;
