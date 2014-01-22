@@ -14,7 +14,7 @@
 @property (retain, nonatomic)          NSMutableArray *buttonArray;
 
 - (void)setScrollViewContentSize;
-- (void)buttonAdded: (UIImage*)image;
+- (VideoButtonView*)buttonAdded;
 - (void)respondToDelete:(id)sender;
 
 - (void)respondToSwap: (id)sender withRelativeSwapIndex:(int)relativeIndex;

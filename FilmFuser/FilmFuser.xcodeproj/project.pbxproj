@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9CA34363188DF7090079C7A1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA34362188DF7090079C7A1 /* MobileCoreServices.framework */; };
+		9CA4822D188F9F9800C8A4BB /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA4822C188F9F9800C8A4BB /* AssetsLibrary.framework */; };
 		9CA4A6A3188CE1B30006D70C /* VideoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4A6A2188CE1B30006D70C /* VideoScrollView.m */; };
 		9CA606D7188D743000BE0F34 /* VideoButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA606D6188D743000BE0F34 /* VideoButtonView.m */; };
 		9CA606DA188D825200BE0F34 /* delete_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA606D9188D825200BE0F34 /* delete_button.png */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		9CA34362188DF7090079C7A1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		9CA4822C188F9F9800C8A4BB /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		9CA4A6A1188CE1B30006D70C /* VideoScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoScrollView.h; sourceTree = "<group>"; };
 		9CA4A6A2188CE1B30006D70C /* VideoScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoScrollView.m; sourceTree = "<group>"; };
 		9CA606D5188D743000BE0F34 /* VideoButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoButtonView.h; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CA4822D188F9F9800C8A4BB /* AssetsLibrary.framework in Frameworks */,
 				9CAE3DA8188C408D00B719DF /* CoreGraphics.framework in Frameworks */,
 				9CF4E4E1188E2E3200316DF9 /* AVFoundation.framework in Frameworks */,
 				9CA34363188DF7090079C7A1 /* MobileCoreServices.framework in Frameworks */,
@@ -126,6 +129,7 @@
 		9CAE3DA4188C408D00B719DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9CA4822C188F9F9800C8A4BB /* AssetsLibrary.framework */,
 				9CF4E4E0188E2E3200316DF9 /* AVFoundation.framework */,
 				9CA34362188DF7090079C7A1 /* MobileCoreServices.framework */,
 				9CAE3DA5188C408D00B719DF /* Foundation.framework */,

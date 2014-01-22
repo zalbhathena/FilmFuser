@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <AVFoundation/AVFoundation.h>
 
 @protocol VideoButtonViewDelegate <NSObject>
 
@@ -19,10 +19,14 @@
 
 @interface VideoButtonView : UIView
 
-- (id)initWithFrame:(CGRect)frame withImage: (UIImage*) image;
+-(void)addVideoAsset:(AVAsset*)new_asset;
 
+@property (retain, nonatomic) UIActivityIndicatorView* activityView;
+ 
 @property (retain, nonatomic) UIButton *videoButton;
 
 @property(nonatomic,assign)id<VideoButtonViewDelegate> delegate;
+
+@property (nonatomic, retain) AVAsset* videoAsset;
 
 @end

@@ -16,6 +16,8 @@
 
 @property (retain, nonatomic) IBOutlet UIButton *addVideoButton;
 
+@property (retain, nonatomic) IBOutlet UIButton *mergeVideoButton;
+
 @property (retain, nonatomic) IBOutlet VideoScrollView *scrollView;
 
 @property BOOL shouldRotate;

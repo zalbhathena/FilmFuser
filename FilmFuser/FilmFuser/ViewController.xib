@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
             <connections>
                 <outlet property="addVideoButton" destination="1m4-ly-b38" id="swW-2N-rV0"/>
+                <outlet property="mergeVideoButton" destination="iub-BA-UIe" id="OKY-TF-gR9"/>
                 <outlet property="scrollView" destination="t6w-cQ-Y6F" id="vaT-Vg-6SS"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -41,9 +42,6 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     <state key="normal" title="BUTTON3"/>
-                    <connections>
-                        <action selector="addVideoButtonPressed:" destination="-1" eventType="touchUpInside" id="Ypd-qL-FT0"/>
-                    </connections>
                 </button>
                 <button autoresizesSubviews="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iub-BA-UIe">
                     <rect key="frame" x="0.0" y="515" width="107" height="53"/>
@@ -51,7 +49,7 @@
                     <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     <state key="normal" title="BUTTON1"/>
                     <connections>
-                        <action selector="addVideoButtonPressed:" destination="-1" eventType="touchUpInside" id="nFm-QK-S56"/>
+                        <action selector="mergeVideoButtonPressed:" destination="-1" eventType="touchUpInside" id="FnE-ZE-axY"/>
                     </connections>
                 </button>
             </subviews>

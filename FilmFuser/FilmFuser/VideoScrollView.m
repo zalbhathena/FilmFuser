@@ -21,6 +21,7 @@
     if (self) {
         // Initialization code
         self.buttonArray = [[NSMutableArray alloc] init];
+        self.delaysContentTouches = NO;
     }
     return self;
 }
@@ -31,6 +32,7 @@
     if (self) {
         // Initialization code
         self.buttonArray = [[NSMutableArray alloc] init];
+        self.delaysContentTouches = NO;
     }
     return self;
 }
@@ -39,6 +41,7 @@
     self = [super initWithCoder:decoder];
     if (self) {
         self.buttonArray = [[NSMutableArray alloc] init];
+        self.delaysContentTouches = NO;
     }
     return self;
 }
@@ -58,7 +61,7 @@
     float button_size;
     CGSize contentSize;
     if (isPortrait) {
-        button_size = minimumSize.width - BUTTON_BUFFER_LENGTH*2;
+        button_size = minimumSize.width/2;
         
         float min_height = minimumSize.height -  INSET_HEIGHT*2;
         float actual_height = (button_size + BUTTON_BUFFER_LENGTH) * [self.buttonArray count] + BUTTON_BUFFER_LENGTH;
@@ -66,7 +69,7 @@
         contentSize = CGSizeMake(minimumSize.width, content_height);
     }
     else {
-        button_size = minimumSize.height - BUTTON_BUFFER_LENGTH*2;
+        button_size = minimumSize.height/2;
         float min_width = minimumSize.width - INSET_HEIGHT*2;
         float actual_width = (button_size + BUTTON_BUFFER_LENGTH) * [self.buttonArray count] + BUTTON_BUFFER_LENGTH;
         float content_width = MAX(min_width, actual_width);
@@ -85,10 +88,10 @@
     }
 }
 
-- (void)buttonAdded: (UIImage*)image{
+- (VideoButtonView*)buttonAdded{
     int button_count = [self.buttonArray count];
 
-    VideoButtonView* temp_button_view = [[VideoButtonView alloc] initWithFrame:[self getButtonFrame:button_count] withImage: image];
+    VideoButtonView* temp_button_view = [[VideoButtonView alloc] initWithFrame:[self getButtonFrame:button_count]];
     temp_button_view.delegate = self;
     
     [self addSubview:temp_button_view];
@@ -96,20 +99,21 @@
     [self.buttonArray addObject:temp_button_view];
 
     [self setScrollViewContentSize];
+    return temp_button_view;
 }
 
 - (CGRect)getButtonFrame: (int)index {
     CGSize frameSize = self.frame.size;
     BOOL isPortrait = frameSize.width < frameSize.height;
     if (isPortrait) {
-        float button_size = frameSize.width - BUTTON_BUFFER_LENGTH*2;
+        float button_size = frameSize.width/2;
         float button_y = BUTTON_BUFFER_LENGTH + index * (button_size + BUTTON_BUFFER_LENGTH);
-        return CGRectMake(BUTTON_BUFFER_LENGTH, button_y, button_size, button_size);
+        return CGRectMake(frameSize.width/4, button_y, button_size, button_size);
     }
     else {
-        float button_size = frameSize.height - BUTTON_BUFFER_LENGTH*2;
+        float button_size = frameSize.height/2;
         float button_x = BUTTON_BUFFER_LENGTH + index * (button_size + BUTTON_BUFFER_LENGTH);
-        return CGRectMake(button_x, BUTTON_BUFFER_LENGTH, button_size, button_size);
+        return CGRectMake(button_x, frameSize.height/4, button_size, button_size);
     }
 }
 

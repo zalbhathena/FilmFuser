@@ -12,15 +12,20 @@
 
 @implementation VideoButtonView
 
-- (id)initWithFrame:(CGRect)frame withImage: (UIImage*) image
+- (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _videoButton = [[UIButton alloc] init];
-        [self.videoButton setBackgroundImage:image
-                                     forState:UIControlStateNormal];
+        self.videoButton = [[UIButton alloc] init];
+        self.activityView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        
+        [self.activityView startAnimating];
+        self.activityView.center = self.videoButton.center;
         
         [self addSubview:self.videoButton];
+        [self.videoButton addSubview:self.activityView];
+        
+        [self.videoButton setBackgroundColor:[UIColor blackColor]];
         
         UISwipeGestureRecognizer* swipeUpGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUpFrom:)];
         UISwipeGestureRecognizer* swipeDownGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDownFrom:)];
@@ -146,10 +151,22 @@
     
     CGRect video_frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
     [self.videoButton setFrame:video_frame];
-    [self.videoButton setBackgroundColor:[UIColor blueColor]];
+    
+    
+    self.activityView.center = self.videoButton.center;
 }
 
-
+-(void)addVideoAsset:(AVAsset*)new_asset {
+    self.videoAsset = new_asset;
+    AVAssetImageGenerator* imageGenerator = [[AVAssetImageGenerator alloc] initWithAsset:new_asset];
+    imageGenerator.appliesPreferredTrackTransform = YES;
+    CMTime time = CMTimeMake(0, 1);
+    UIImage* image = [UIImage imageWithCGImage:[imageGenerator copyCGImageAtTime: time actualTime:NULL error:NULL]];
+    [self.videoButton setBackgroundImage:image
+                                forState:UIControlStateNormal];
+    [self.activityView removeFromSuperview];
+    self.activityView = nil;
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

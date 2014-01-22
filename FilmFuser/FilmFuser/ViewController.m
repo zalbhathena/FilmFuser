@@ -12,6 +12,7 @@
 #import <NSObjCRuntime.h>
 #endif
 #import "VideoScrollView.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 @interface ViewController ()
 
 @end
@@ -53,6 +54,9 @@
     [self video];
 }
 
+- (IBAction)mergeVideoButtonPressed:(id)sender {
+    [self merge];
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -86,21 +90,190 @@
         // NSLog(@"%@",moviePath);
         //NSURL *videoUrl=(NSURL*)[info objectForKey:UIImagePickerControllerMediaURL];
         
-        /*if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (moviePath)) {
-            UISaveVideoAtPathToSavedPhotosAlbum (moviePath, nil, nil, nil);
-        }*/
     }
     
     NSURL* sourceMovieURL = [NSURL fileURLWithPath:moviePath];
-    AVURLAsset* sourceAsset = [AVURLAsset URLAssetWithURL:sourceMovieURL options:nil];
-    AVAssetImageGenerator* imageGenerator = [[AVAssetImageGenerator alloc] initWithAsset:sourceAsset];
-    imageGenerator.appliesPreferredTrackTransform = YES;
-    CMTime time = CMTimeMake(0, 1);
-    UIImage* image = [UIImage imageWithCGImage:[imageGenerator copyCGImageAtTime: time actualTime:NULL error:NULL]];
-    [self.scrollView buttonAdded:image];
+    NSURL* outputPath = [sourceMovieURL URLByDeletingPathExtension];
+    outputPath = [outputPath URLByDeletingLastPathComponent];
+    NSMutableString* last_path_component =
+            [[NSMutableString alloc] initWithString:[[sourceMovieURL URLByDeletingPathExtension] lastPathComponent]];
+    [last_path_component appendString:@"~SQUARE"];
+    outputPath = [outputPath URLByAppendingPathComponent:last_path_component];
+    outputPath = [outputPath URLByAppendingPathExtension:@"MOV"];
+    AVURLAsset* asset = [AVURLAsset URLAssetWithURL:sourceMovieURL options:nil];
+    
+    AVMutableComposition *composition = [AVMutableComposition composition];
+    [composition  addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+    
+    // input clip
+    AVAssetTrack *clipVideoTrack = [[asset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+    
+    // make it square
+    AVMutableVideoComposition* videoComposition = [AVMutableVideoComposition videoComposition];
+    videoComposition.renderSize = CGSizeMake(clipVideoTrack.naturalSize.height, clipVideoTrack.naturalSize.height);
+    videoComposition.frameDuration = CMTimeMake(1, 30);
+    
+    AVMutableVideoCompositionInstruction *instruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
+    instruction.timeRange = CMTimeRangeMake(kCMTimeZero, CMTimeMakeWithSeconds(60, 30) );
+    
+    // rotate to portrait
+    AVMutableVideoCompositionLayerInstruction* transformer = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:clipVideoTrack];
+    CGAffineTransform t1 = CGAffineTransformMakeTranslation(clipVideoTrack.naturalSize.height, -(clipVideoTrack.naturalSize.width - clipVideoTrack.naturalSize.height) /2 );
+    CGAffineTransform t2 = CGAffineTransformRotate(t1, M_PI_2);
+    
+    CGAffineTransform finalTransform = t2;
+    [transformer setTransform:finalTransform atTime:kCMTimeZero];
+    instruction.layerInstructions = [NSArray arrayWithObject:transformer];
+    videoComposition.instructions = [NSArray arrayWithObject: instruction];
+    
+    // export
+    
+    
+    AVAssetExportSession* exporter = [[AVAssetExportSession alloc] initWithAsset:asset presetName:AVAssetExportPresetHighestQuality] ;
+    exporter.videoComposition = videoComposition;
+    exporter.outputURL=outputPath;
+    exporter.outputFileType=AVFileTypeMPEG4;
+    
+    VideoButtonView* button = [self.scrollView buttonAdded];
+    
+    [exporter exportAsynchronouslyWithCompletionHandler:^{
+        BOOL success = false;
+        switch ([exporter status]) {
+            case AVAssetExportSessionStatusCompleted:
+                success = true;
+                NSLog(@"Export Completed");
+                break;
+            case AVAssetExportSessionStatusWaiting:
+                NSLog(@"Export Waiting");
+                break;
+            case AVAssetExportSessionStatusExporting:
+                NSLog(@"Export Exporting");
+                break;
+            case AVAssetExportSessionStatusFailed:
+            {
+                NSError *error = [exporter error];
+                NSLog(@"Export failed: %@", [error localizedDescription]);
+                
+                break;
+            }
+            case AVAssetExportSessionStatusCancelled:
+                NSLog(@"Export canceled");
+                
+                break;
+            default:
+                break;
+        }
+        
+        if (success == true) {
+            
+            AVURLAsset* new_asset = [AVURLAsset URLAssetWithURL:outputPath options:nil];
+            [button addVideoAsset:new_asset];
+            
+        }
+        /*if (success == true) {
+         
+         ALAssetsLibrary *assetLibrary = [[ALAssetsLibrary alloc] init];
+         [assetLibrary writeVideoAtPathToSavedPhotosAlbum:url completionBlock:^(NSURL *assetURL, NSError *error){
+         NSError *removeError = nil;
+         [[NSFileManager defaultManager] removeItemAtURL:url error:&removeError];
+         }];
+         
+         }*/
+    }];
+    
+    /*[exporter exportAsynchronouslyWithCompletionHandler:^(void){
+        AVURLAsset* new_asset = [AVURLAsset URLAssetWithURL:outputPath options:nil];
+        [button addVideoAsset:new_asset];
+        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (outputPath.absoluteString)) {
+            UISaveVideoAtPathToSavedPhotosAlbum (outputPath.absoluteString, self, nil, nil);
+        }
+        
+    }];*/
     
     [self dismissViewControllerAnimated:YES completion:nil];
     //[picker release];
+}
+
+- (void)merge {
+    AVMutableComposition* composition = [AVMutableComposition composition];
+    
+    CMTime time = kCMTimeZero;
+    int count = 0;
+    for (VideoButtonView* button in self.scrollView.buttonArray) {
+        AVAsset* video = button.videoAsset;
+        count++;
+        AVMutableCompositionTrack * composedTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo
+                                                                             preferredTrackID:kCMPersistentTrackID_Invalid];
+        
+        [composedTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, video.duration)
+                ofTrack:[[video tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0]
+                atTime:kCMTimeZero error:nil];
+        time = CMTimeAdd(time, video.duration);
+    }
+    
+    NSString* documentsDirectory= [self applicationDocumentsDirectory];
+    
+    NSString* myDocumentPath= [documentsDirectory stringByAppendingPathComponent:@"merge_video.mp4"];
+    
+    NSURL *url = [[NSURL alloc] initFileURLWithPath: myDocumentPath];
+    
+    if([[NSFileManager defaultManager] fileExistsAtPath:myDocumentPath])
+        
+    {
+        
+        [[NSFileManager defaultManager] removeItemAtPath:myDocumentPath error:nil];
+        
+    }
+    
+    AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
+    
+    
+    
+    exporter.outputURL=url;
+    
+    exporter.outputFileType = @"com.apple.quicktime-movie";
+    
+    //exporter.shouldOptimizeForNetworkUse = YES;
+    
+    [exporter exportAsynchronouslyWithCompletionHandler:^{
+        BOOL success = false;
+        switch ([exporter status]) {
+            case AVAssetExportSessionStatusCompleted:
+                success = true;
+                NSLog(@"Export Completed");
+                break;
+            case AVAssetExportSessionStatusWaiting:
+                NSLog(@"Export Waiting");
+                break;
+            case AVAssetExportSessionStatusExporting:
+                NSLog(@"Export Exporting");
+                break;
+            case AVAssetExportSessionStatusFailed:
+            {
+                NSError *error = [exporter error];
+                NSLog(@"Export failed: %@", [error localizedDescription]);
+                
+                break;
+            }
+            case AVAssetExportSessionStatusCancelled:
+                NSLog(@"Export canceled");
+                
+                break;
+            default:
+                break;
+        }
+        
+        
+    }];
+}
+
+- (NSString*) applicationDocumentsDirectory
+{
+    
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    return basePath;
+    
 }
 
 - (void) dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion {
