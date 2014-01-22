@@ -86,7 +86,7 @@
     NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
     NSString* moviePath = nil;
     if (CFStringCompare ((__bridge CFStringRef) mediaType, kUTTypeMovie, 0) == kCFCompareEqualTo) {
-        moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
+        moviePath = (NSString*)[[info objectForKey:UIImagePickerControllerMediaURL] path];
         // NSLog(@"%@",moviePath);
         //NSURL *videoUrl=(NSURL*)[info objectForKey:UIImagePickerControllerMediaURL];
         
@@ -170,46 +170,95 @@
             [button addVideoAsset:new_asset];
             
         }
-        /*if (success == true) {
-         
-         ALAssetsLibrary *assetLibrary = [[ALAssetsLibrary alloc] init];
-         [assetLibrary writeVideoAtPathToSavedPhotosAlbum:url completionBlock:^(NSURL *assetURL, NSError *error){
-         NSError *removeError = nil;
-         [[NSFileManager defaultManager] removeItemAtURL:url error:&removeError];
-         }];
-         
-         }*/
+
     }];
-    
-    /*[exporter exportAsynchronouslyWithCompletionHandler:^(void){
-        AVURLAsset* new_asset = [AVURLAsset URLAssetWithURL:outputPath options:nil];
-        [button addVideoAsset:new_asset];
-        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (outputPath.absoluteString)) {
-            UISaveVideoAtPathToSavedPhotosAlbum (outputPath.absoluteString, self, nil, nil);
-        }
-        
-    }];*/
     
     [self dismissViewControllerAnimated:YES completion:nil];
     //[picker release];
 }
 
 - (void)merge {
-    AVMutableComposition* composition = [AVMutableComposition composition];
-    
-    CMTime time = kCMTimeZero;
-    int count = 0;
-    for (VideoButtonView* button in self.scrollView.buttonArray) {
-        AVAsset* video = button.videoAsset;
-        count++;
-        AVMutableCompositionTrack * composedTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo
-                                                                             preferredTrackID:kCMPersistentTrackID_Invalid];
-        
-        [composedTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, video.duration)
-                ofTrack:[[video tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0]
-                atTime:kCMTimeZero error:nil];
-        time = CMTimeAdd(time, video.duration);
+    if([self.scrollView.buttonArray count] == 0) {
+        __block UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                        message:@"No films available to fuze!"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            
+            [alert show];
+            
+        });
     }
+    else {
+        __block UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Merging"
+                                                    message:@"Films are currently fuzing!"
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            
+            [alert show];
+            
+        });
+    }
+    AVMutableComposition *composition = [AVMutableComposition composition];
+    
+    
+    AVMutableCompositionTrack *compositionVideoTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+    
+    AVMutableVideoComposition *videoComposition = [AVMutableVideoComposition videoComposition];
+    
+    videoComposition.frameDuration = CMTimeMake(1,30);
+    
+    videoComposition.renderScale = 1.0;
+    
+    AVMutableVideoCompositionInstruction *instruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
+    
+    AVMutableVideoCompositionLayerInstruction *layerInstruction = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:compositionVideoTrack];
+    
+    AVMutableCompositionTrack *compositionAudioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+    
+    
+    float time = 0;
+    
+    
+    for (VideoButtonView* button in self.scrollView.buttonArray) {
+        
+        
+        AVAsset *sourceAsset = button.videoAsset;
+        
+        NSError *error = nil;
+        
+        id videoTrack = [sourceAsset tracksWithMediaType:AVMediaTypeVideo];
+        id audioTrack = [sourceAsset tracksWithMediaType:AVMediaTypeAudio];
+        
+        AVAssetTrack *sourceVideoTrack;
+        AVAssetTrack *sourceAudioTrack;
+        
+        CMTime current_time = [composition duration];
+        
+        if(videoTrack) {
+            
+            sourceVideoTrack = [videoTrack objectAtIndex:0];
+            [compositionVideoTrack insertTimeRange:sourceVideoTrack.timeRange ofTrack:sourceVideoTrack atTime:current_time error:&error];
+        }
+        if(audioTrack) {
+            sourceAudioTrack = [audioTrack objectAtIndex:0];
+            [compositionAudioTrack insertTimeRange:sourceAudioTrack.timeRange ofTrack:sourceAudioTrack atTime:current_time error:&error];
+        }
+        
+        time += CMTimeGetSeconds(sourceVideoTrack.timeRange.duration);
+        
+    }
+    
+    
+    
+    instruction.layerInstructions = [NSArray arrayWithObject:layerInstruction];
+    instruction.timeRange = compositionVideoTrack.timeRange;
+    
+    
+    videoComposition.instructions = [NSArray arrayWithObject:instruction];
     
     NSString* documentsDirectory= [self applicationDocumentsDirectory];
     
@@ -262,7 +311,24 @@
             default:
                 break;
         }
-        
+        if (success == true) {
+            
+            ALAssetsLibrary *assetLibrary = [[ALAssetsLibrary alloc] init];
+            [assetLibrary writeVideoAtPathToSavedPhotosAlbum:url completionBlock:^(NSURL *assetURL, NSError *error){
+                NSError *removeError = nil;
+                [[NSFileManager defaultManager] removeItemAtURL:url error:&removeError];
+            }];
+            __block UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Done!"
+                                                            message:@"Films have been fuzed!"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                
+                [alert show];
+                
+            });
+        }
         
     }];
 }
@@ -283,6 +349,10 @@
 
 - (BOOL)shouldAutorotate {
     return self.shouldRotate;
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+        [alertView dismissWithClickedButtonIndex:buttonIndex animated:YES];
 }
 
 @end

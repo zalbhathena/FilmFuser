@@ -16,6 +16,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.imageView = [[UIImageView alloc] init];
         self.videoButton = [[UIButton alloc] init];
         self.activityView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         
@@ -23,8 +24,10 @@
         self.activityView.center = self.videoButton.center;
         
         [self addSubview:self.videoButton];
+        [self addSubview:self.imageView];
         [self.videoButton addSubview:self.activityView];
         
+        [self.imageView setBackgroundColor:[UIColor clearColor]];
         [self.videoButton setBackgroundColor:[UIColor blackColor]];
         
         UISwipeGestureRecognizer* swipeUpGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUpFrom:)];
@@ -59,7 +62,7 @@
         frame = CGRectMake(frame.origin.x, -1*frame.size.height - 10, frame.size.height, frame.size.width);
         [UIView animateWithDuration:0.5
                               delay:0.0
-                            options: UIViewAnimationCurveEaseOut
+                            options: UIViewAnimationOptionCurveEaseOut
                          animations:^{
                              self.frame = frame;
                          }
@@ -81,7 +84,7 @@
         frame = CGRectMake(frame.origin.x, self.superview.frame.size.height, frame.size.height, frame.size.width);
         [UIView animateWithDuration:0.5
                               delay:0.0
-                            options: UIViewAnimationCurveEaseOut
+                            options: UIViewAnimationOptionCurveEaseOut
                          animations:^{
                              self.frame = frame;
                          }
@@ -97,7 +100,7 @@
         frame = CGRectMake(-1*frame.size.width - 10, frame.origin.y, frame.size.height, frame.size.width);
         [UIView animateWithDuration:0.5
                               delay:0.0
-                            options: UIViewAnimationCurveEaseOut
+                            options: UIViewAnimationOptionCurveEaseOut
                          animations:^{
                              self.frame = frame;
                          }
@@ -119,7 +122,7 @@
         frame = CGRectMake(self.superview.frame.size.width, frame.origin.y, frame.size.height, frame.size.width);
         [UIView animateWithDuration:0.5
                               delay:0.0
-                            options: UIViewAnimationCurveEaseOut
+                            options: UIViewAnimationOptionCurveEaseOut
                          animations:^{
                              self.frame = frame;
                          }
@@ -147,13 +150,21 @@
 
 -(void) setFrame:(CGRect)frame
 {
-    [super setFrame:frame];
-    
-    CGRect video_frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-    [self.videoButton setFrame:video_frame];
-    
-    
-    self.activityView.center = self.videoButton.center;
+    [UIView animateWithDuration:0.4
+                          delay:0.0
+                        options: UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         [super setFrame:frame];
+                         
+                         CGRect video_frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+                         [self.videoButton setFrame:video_frame];
+                         [self.imageView setFrame:video_frame];
+                         
+                         CGRect activity_frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+                         self.activityView.frame = activity_frame;
+                     }
+                     completion:^(BOOL finished){
+                     }];
 }
 
 -(void)addVideoAsset:(AVAsset*)new_asset {
@@ -162,10 +173,9 @@
     imageGenerator.appliesPreferredTrackTransform = YES;
     CMTime time = CMTimeMake(0, 1);
     UIImage* image = [UIImage imageWithCGImage:[imageGenerator copyCGImageAtTime: time actualTime:NULL error:NULL]];
-    [self.videoButton setBackgroundImage:image
-                                forState:UIControlStateNormal];
-    [self.activityView removeFromSuperview];
-    self.activityView = nil;
+    self.imageView.image = image;
+    //[self.activityView removeFromSuperview];
+    //self.activityView = nil;
 }
 
 /*
