@@ -202,7 +202,6 @@
         else {
             [array addObject:asset];
         }
-        
     }];
 }
 
@@ -276,9 +275,11 @@
         });
 
     }
+    self.isMerging = YES;
     
     NSMutableArray* assetList = [[NSMutableArray alloc] init];
-    int final_count = [self.scrollView.buttonArray count];
+    int final_count = (int)[self.scrollView.buttonArray count];
+    int error = 0;
     for (VideoButtonView* button in self.scrollView.buttonArray) {
         AVURLAsset* asset = button.videoAsset;
         
@@ -286,10 +287,10 @@
     }
     while ([assetList count] < final_count );
     
-    [self finishMerge:assetList];
+    [self finishMerge:assetList withError: error];
 }
 
-- (void)finishMerge:(NSArray*)assetList {
+- (void)finishMerge:(NSArray*)assetList withError:(int)error{
     AVMutableComposition *composition = [AVMutableComposition composition];
     
     
@@ -409,8 +410,15 @@
                 [self.alert dismissWithClickedButtonIndex:0 animated:YES];
                 self.alert = nil;
             }
-            self.alert = [[UIAlertView alloc] initWithTitle:@"Done!"
-                                                    message:@"Films have been fuzed!"
+            NSString* message;
+            if (error) {
+                message = @"Films have been fuzed! The final video is saved on the Camera Roll but some parts of the video might be corrupted!";
+            }
+            else {
+                message = @"Films have been fuzed! The final video is saved on the Camera Roll.";
+            }
+                self.alert = [[UIAlertView alloc] initWithTitle:@"Done!"
+                                                    message:message
                                                    delegate:self
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
@@ -420,6 +428,23 @@
                 
             });
         }
+        else {
+            if (self.alert) {
+                [self.alert dismissWithClickedButtonIndex:0 animated:YES];
+                self.alert = nil;
+            }
+            self.alert = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                    message:@"Something went wrong!"
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                
+                [self.alert show];
+                
+            });
+        }
+        self.isMerging = NO;
         
     }];
 
